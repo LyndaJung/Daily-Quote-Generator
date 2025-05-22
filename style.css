@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+/* Elements */
+
+/* Button */
+
+.btn-quote {
+    position: absolute;
+    left: 50%;
+    top: 16.5rem;
+    height: 10rem;
+}
