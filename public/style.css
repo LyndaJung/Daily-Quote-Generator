@@ -9,26 +9,25 @@
 
 body {
   background-color: azure;
+  min-height: 100vh;
 }
-
-/* Elements */
 
 .project-title {
   text-align: center;
-  top: 30%;
   padding: 40px;
 }
+
 .quote-box {
   background-color: rgb(203, 186, 240);
-  width: 700px;
-  position: absolute;
-  top: 12%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto 0 auto;
+  position: relative;
   padding: 40px;
   border-radius: 10px;
   text-align: center;
 }
+
 .author {
   font-family: "Poppins", sans-serif;
   font-weight: 200;
@@ -43,13 +42,30 @@ body {
   cursor: pointer;
   padding: 0;
   outline: none;
+  display: flex;
+  justify-content: center;
+  margin: 20px auto 0 auto;
 }
 
 .btn-quote {
-  top: 20%;
-  left: 50%;
-  position: absolute;
   width: 100px;
   height: 100px;
   display: block;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .quote-box {
+    width: 98%;
+    padding: 15px;
+    font-size: 1rem;
+  }
+  .btn-quote {
+    width: 60px;
+    height: 60px;
+  }
+  .project-title {
+    padding: 16px;
+    font-size: 1.2rem;
+  }
 }
