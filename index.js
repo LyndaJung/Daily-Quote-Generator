@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const cors = require("cors");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Enable CORS for all origins (for development; restrict in production)
 app.use(cors());
