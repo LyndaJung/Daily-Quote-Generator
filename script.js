@@ -1,35 +1,35 @@
-// Wait until the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
-  // Get references to DOM elements
   const quoteText = document.querySelector(".quote");
   const quoteAuthor = document.querySelector(".author");
   const quoteBtn = document.querySelector(".btn");
 
-  // Function to fetch quote from the API
   function fetchQuote() {
-    $.ajax({
-      method: "GET",
-      url: "https://api.api-ninjas.com/v1/quotes",
-      headers: { "X-Api-Key": "Ri0xxSqJ45OvzylcqATxgQ==MPANOEuSkcPJ3Qjs" },
-      contentType: "application/json",
-      success: function (result) {
-        // The API returns an array of quotes, get the first one
-        if (result && result.length > 0) {
-          quoteText.textContent = `"${result[0].quote}"`;
-          quoteAuthor.textContent = `- ${result[0].author}`;
+    fetch("http://localhost:3000/quotes")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-      },
-      error: function ajaxError(jqXHR) {
+        return response.json();
+      })
+      .then((data) => {
+        // ZenQuotes returns an array of quotes
+        if (Array.isArray(data) && data.length > 0) {
+          quoteText.textContent = `"${data[0].q}"`;
+          quoteAuthor.textContent = `- ${data[0].a}`;
+        } else {
+          quoteText.textContent = "No quote found.";
+          quoteAuthor.textContent = "";
+        }
+      })
+      .catch((error) => {
         quoteText.textContent = "Sorry, couldn't fetch a quote.";
         quoteAuthor.textContent = "";
-        console.error("Error: ", jqXHR.responseText);
-      },
-    });
+        console.error("Fetch error:", error);
+      });
   }
 
-  // Add click event listener to the button
   quoteBtn.addEventListener("click", fetchQuote);
 
-  // Optionally, load a quote when the page first loads
+  // Fetch a quote when the page loads
   fetchQuote();
 });
