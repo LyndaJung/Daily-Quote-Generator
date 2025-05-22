@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const quoteBtn = document.querySelector(".btn");
 
   function fetchQuote() {
-    fetch("https://daily-quote-generator.onrender.com/quotes")
+    fetch("/quotes")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
